@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
   title: {
@@ -25,4 +25,4 @@ const productSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("product", productSchema);
+export default mongoose.model('product', productSchema);

@@ -6,7 +6,7 @@ import productRoutes from "./routes/productRoutes";
 import path from "path";
 import orderRoutes from "./routes/orderRoutes";
 import { errors } from "celebrate";
-import { errorHandler } from "./middlewares/errorHandler";
+import errorHandler from "./middlewares/errorHandler";
 import NotFoundError from "./errors/NotFoundError";
 
 const app = express();
@@ -18,6 +18,10 @@ app.use(express.json());
 app.use(requestLogger);
 
 app.use(express.static(path.join(__dirname, "..", "public")));
+
+app.get("/", (req, res) => {
+  res.send("Сервер работает!");
+});
 
 app.use(productRoutes);
 app.use(orderRoutes);
@@ -31,10 +35,6 @@ app.use(errorLogger);
 app.use(errors());
 
 app.use(errorHandler);
-
-app.get("/", (req, res) => {
-  res.send("Сервер работает!");
-});
 
 app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);
